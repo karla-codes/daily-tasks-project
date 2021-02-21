@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Tasks</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="progress-container">
+        <h1>You're <span class="percentage">40%</span> there!</h1>
+        <div class="progress-bar"></div>
+        <p>
+          <span class="tasks-complete">4</span> of
+          <span class="tasks-total">10</span> tasks complete
+        </p>
+      </div>
+
+      <div class="tasks-container">
+        <div class="form-container">
+          <form class="task-form">
+            <label for="new-task">Add Task</label>
+            <input type="text" name="task" id="new-task" />
+            <button><span class="plus-icon">+</span></button>
+          </form>
+        </div>
+        <div class="task-list">
+          <div class="task-item">
+            <input class="task-status" type="checkbox" />
+            <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="1.5"
+              version="1.1"
+              viewBox="0 0 149 149"
+              xml:space="preserve"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="74.43"
+                cy="74.43"
+                r="70.264"
+                fill="#f5dcd5"
+                stroke="#464646"
+                stroke-width="8.33px"
+              />
+              <path
+                d="m37.127 78.154l29.166 23.795 45.44-55.038"
+                fill="none"
+                stroke="#717da8"
+                stroke-width="12.5px"
+              />
+            </svg>
+            <label class="task-name" for="task">Buy groceries</label>
+            <button class="delete-task"></button>
+          </div>
+
+          <div class="task-item">
+            <input class="task-status" type="checkbox" />
+            <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="1.5"
+              version="1.1"
+              viewBox="0 0 149 149"
+              xml:space="preserve"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="74.43"
+                cy="74.43"
+                r="70.264"
+                fill="#f5dcd5"
+                stroke="#464646"
+                stroke-width="8.33px"
+              />
+              <path
+                d="m37.127 78.154l29.166 23.795 45.44-55.038"
+                fill="none"
+                stroke="#717da8"
+                stroke-width="12.5px"
+              />
+            </svg>
+            <label class="task-name" for="task">Work on design project</label>
+            <button class="delete-task"></button>
+          </div>
+        </div>
+        <div class="clear-button">
+          <button class="clear-tasks">Clear all tasks</button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
