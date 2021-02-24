@@ -1,0 +1,212 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  background-color: #f7f9ff;
+}
+
+main.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 31.25rem;
+  margin: 8.125rem auto 0;
+  width: 85%;
+}
+
+/***********************************************
+Progress Bar and progress info
+***********************************************/
+
+.progress-container,
+.tasks-container {
+  grid-row: 1 / 2;
+}
+
+.progress-container {
+  grid-column: 1 / 2;
+}
+
+.progress-container h1,
+.progress-container p {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.progress-container h1 {
+  font-weight: 500;
+  font-size: 2rem;
+  width: 60%;
+}
+
+.progress-container p {
+  font-size: 1.25rem;
+}
+
+.progress-bar {
+}
+
+/************************************************
+Tasks
+************************************************/
+.tasks-container {
+  margin: 0 auto;
+}
+
+.form-container {
+  width: 100%;
+  margin-bottom: 2.625rem;
+}
+
+form.task-form {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 21.875rem;
+}
+
+.task-form label {
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+}
+
+.task-input {
+  display: flex;
+  align-items: center;
+}
+
+.task-input input {
+  font-family: "Poppins", sans-serif;
+  width: 18.4375rem;
+  height: 2.5rem;
+  border-radius: 9px;
+  border: 1px solid #717da8;
+  margin-right: 1rem;
+  padding: 10px;
+}
+
+.task-input button {
+  background-color: #ffc4d3;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border-style: none;
+}
+
+.plus-icon {
+  font-size: 2rem;
+}
+
+.task-list {
+  width: 21.875rem;
+  height: 18.75rem;
+}
+
+.task-item {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #717da8;
+  background-color: #ffffff;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  margin-bottom: 6px;
+}
+
+.task-item:hover {
+  background-color: #dee5ff;
+  border-width: 2px;
+  margin-bottom: 4px;
+}
+
+.task-item:hover .delete .cross {
+  stroke: #5c5c5c;
+}
+
+.delete {
+  width: 14px;
+  height: 14px;
+}
+
+.task-name {
+  font-size: 1rem;
+  line-height: 127%;
+  width: 13.75rem;
+  min-height: 1.5rem;
+}
+
+.delete-task {
+  background: none;
+  border-style: none;
+  padding: 0;
+}
+
+.circle-checkbox {
+  width: 1.625rem;
+  height: 1.625rem;
+}
+
+.task-status {
+  position: absolute;
+  width: 1.625rem;
+  height: 1.625rem;
+  left: 1.25rem;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* visually show focus outline when the SVG receives focus */
+.task-status:focus + svg {
+  outline: 3px solid #ffc4d3;
+  outline-offset: 2px;
+}
+
+/* hide the focus styles for mouse users */
+.task-status:focus:not(:focus-visible) + svg {
+  outline: none;
+}
+
+/* adds stroke color when checkbox is checked */
+.task-status:checked + svg .checkmark {
+  stroke: #717da8;
+}
+
+.clear-button {
+  width: 21.875rem;
+}
+
+.clear-tasks {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.125rem;
+  background-color: #717da8;
+  border-style: none;
+  border-radius: 6px;
+  width: 9.6875rem;
+  height: 3.125rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
