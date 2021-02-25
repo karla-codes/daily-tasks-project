@@ -18,8 +18,7 @@
         <h1>You're <span class="percentage">40%</span> there!</h1>
         <div class="progress-bar">
           <svg
-            width="424"
-            height="208"
+            viewBox="0 0 424 208"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -48,6 +47,7 @@
               stroke-linecap="round"
             />
             <path
+              class="meter"
               d="M6 201l47.22-59.517a1 1 0 011.564-.003l36.283 45.354a1 1 0 001.656-.141l58.394-105.596a1 1 0 011.754.007l36.238 66.755a1 1 0 001.763-.01l52.054-98.518a1 1 0 011.764-.008l28.871 53.439a1 1 0 001.784-.047l44.882-94.841a1 1 0 011.802-.014L417 201"
               stroke="#FE96B0"
               stroke-width="12"
@@ -66,7 +66,7 @@
           <form class="task-form">
             <label for="new-task">Add Task</label>
             <div class="task-input">
-              <input type="text" name="task" id="new-task" />
+              <input class="task" type="text" name="task" id="new-task" />
               <button><span class="plus-icon">+</span></button>
             </div>
           </form>
@@ -181,5 +181,6 @@
         </div>
       </div>
     </main>
+    <script src="/js/script.js"></script>
   </body>
 </html>

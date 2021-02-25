@@ -60,7 +60,7 @@ Progress Bar and progress info
 .progress-container h1 {
   font-weight: 500;
   font-size: 2rem;
-  width: 60%;
+  width: 100%;
 }
 
 .progress-container p {
@@ -68,6 +68,18 @@ Progress Bar and progress info
 }
 
 .progress-bar {
+  width: 80%;
+  margin: 3.75rem auto;
+}
+
+.progress-bar svg {
+  width: 100%;
+  height: auto;
+}
+
+.meter {
+  stroke-dasharray: 201px;
+  stroke-dashoffset: 0;
 }
 
 /************************************************
@@ -158,6 +170,10 @@ form.task-form {
   line-height: 127%;
   width: 13.75rem;
   min-height: 1.5rem;
+}
+
+.completed-task {
+  text-decoration: line-through;
 }
 
 .delete-task {
