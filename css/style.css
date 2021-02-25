@@ -134,8 +134,10 @@ form.task-form {
 }
 
 .task-list {
-  width: 21.875rem;
+  width: 22.625rem;
   height: 18.75rem;
+  padding-right: 12px;
+  overflow-y: auto;
 }
 
 .task-item {
@@ -214,6 +216,7 @@ form.task-form {
 
 .clear-button {
   width: 21.875rem;
+  margin-top: 2rem;
 }
 
 .clear-tasks {
