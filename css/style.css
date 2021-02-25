@@ -214,6 +214,10 @@ form.task-form {
   stroke: #717da8;
 }
 
+.task-status:checked ~ .task-name {
+  text-decoration: line-through;
+}
+
 .clear-button {
   width: 21.875rem;
   margin-top: 2rem;
