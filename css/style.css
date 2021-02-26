@@ -80,6 +80,7 @@ Progress Bar and progress info
 .meter {
   stroke-dasharray: 201px;
   stroke-dashoffset: 0;
+  transition: stroke-dashoffset 850ms ease-in-out;
 }
 
 /************************************************
