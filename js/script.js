@@ -2,6 +2,7 @@ const meter = document.querySelector(".meter");
 const meterLength = meter.getTotalLength();
 const taskInput = document.querySelector(".task-input input");
 const addTaskBtn = document.querySelector(".task-input button");
+const taskItem = document.querySelectorAll(".task-item");
 const taskName = document.querySelector(".task-name");
 const tasksContainer = document.querySelector(".task-list");
 const deleteTaskBtn = document.querySelector(".delete-task");
@@ -80,11 +81,12 @@ addTaskBtn.addEventListener("click", function (e) {
     .createContextualFragment(taskHTML);
   tasksContainer.appendChild(taskHTMLFragment);
   taskInput.value = "";
+
   const checkbox = document.querySelectorAll(".task-status");
   const checkboxArray = [...checkbox];
-  console.log(checkboxArray);
-  updateTasksCompleted(checkboxArray);
+
   updateNumberOfTasks(tasksArray);
+  updateTasksCompleted(checkboxArray);
 });
 
 // update number of tasks
@@ -100,85 +102,27 @@ function updateTasksCompleted(arr) {
       if (checkbox.checked) {
         checkboxCompleted.push(checkbox);
         totalTasksCompleted.textContent = checkboxCompleted.length;
+        updateProgressBar(checkboxCompleted, tasksArray);
       } else {
         checkboxCompleted.pop();
         totalTasksCompleted.textContent = checkboxCompleted.length;
+        updateProgressBar(checkboxCompleted, tasksArray);
       }
     });
   });
 }
 
-// update progress status %
-
-// update progress bar
-
-// change state of task when task is complete
-// update task text with dash across text
-// update number of tasks completed
-// update progress bar
+// update progress status % and progress bar
+function updateProgressBar(completedTasks, totalTasks) {
+  const inverseMovement =
+    (meterLength * completedTasks.length) / totalTasks.length;
+  const meterMovement = meterLength - inverseMovement;
+  console.log(meterMovement);
+  const percentCompleted = (completedTasks.length / totalTasks.length) * 100;
+  console.log(percentCompleted);
+  percentage.textContent = `${Math.floor(percentCompleted)}%`;
+  meter.style.strokeDashoffset = meterMovement;
+}
 
 // delete task
 // clear all tasks
-
-const taskDiv = document.createElement("div");
-//   const taskCheckbox = document.createElement("input");
-//   const taskLabel = document.createElement("label");
-//   const taskDeleteButton = document.createElement("button");
-//   const checkmarkSvg = `
-//   <svg
-//   class="circle-checkbox"
-//   clip-rule="evenodd"
-//   fill-rule="evenodd"
-//   stroke-linecap="round"
-//   stroke-linejoin="round"
-//   stroke-miterlimit="1.5"
-//   version="1.1"
-//   viewBox="0 0 149 149"
-//   xml:space="preserve"
-//   xmlns="http://www.w3.org/2000/svg"
-// >
-//   <circle
-//     class="checkbox-circle"
-//     cx="74.43"
-//     cy="74.43"
-//     r="70.264"
-//     fill="#f5dcd5"
-//     stroke="#464646"
-//     stroke-width="8.33px"
-//   />
-//   <path
-//     class="checkmark"
-//     d="m37.127 78.154l29.166 23.795 45.44-55.038"
-//     fill="none"
-//     stroke="none"
-//     stroke-width="12.5px"
-//   />
-// </svg>
-//   `;
-//   const deleteSvg = `
-//   <svg
-//   class="delete"
-//   width="18"
-//   height="17"
-//   viewBox="0 0 18 17"
-//   fill="none"
-//   xmlns="http://www.w3.org/2000/svg"
-// >
-//   <path
-//     class="cross"
-//     d="M1.34591 1L17 16M16.6541 1L1 16"
-//     stroke="none"
-//     stroke-width="2"
-//   />
-// </svg>
-//   `;
-//   taskDiv.classList.add("task-item");
-//   taskCheckbox.classList.add("task-status");
-//   taskLabel.classList.add("task-name");
-//   taskDeleteButton.classList.add("delete-task");
-//   taskDeleteButton.innerHTML = deleteSvg;
-//   taskDiv.appendChild(taskCheckbox);
-//   taskDiv.insertAdjacentHTML("afterbegin", checkmarkSvg);
-//   taskDiv.appendChild(taskLabel);
-//   taskDiv.appendChild(taskDeleteButton);
-//   tasksContainer.appendChild(taskDiv);
