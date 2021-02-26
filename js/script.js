@@ -2,14 +2,19 @@ const meter = document.querySelector(".meter");
 const meterLength = meter.getTotalLength();
 const taskInput = document.querySelector(".task-input input");
 const addTaskBtn = document.querySelector(".task-input button");
+const taskCheckboxes = document.querySelectorAll(".task-status");
+const checkboxArray = [...taskCheckboxes];
 const taskName = document.querySelector(".task-name");
 const tasksContainer = document.querySelector(".task-list");
 const deleteTaskBtn = document.querySelector(".delete-task");
 const clearAllTasks = document.querySelector(".clear-button");
 const percentage = document.querySelector(".percentage");
-const completedTasks = document.querySelector(".tasks-complete");
+const totalTasksCompleted = document.querySelector(".tasks-complete");
 const totalTasks = document.querySelector(".tasks-total");
 const tasksArray = [];
+const tasksCompletedArray = [];
+let addTasksCompleted = 0;
+
 // set meter dash array/offset
 meter.style.strokeDasharray = meterLength;
 meter.style.strokeDashoffset = meterLength;
@@ -82,7 +87,21 @@ function updateNumberOfTasks(arr) {
   totalTasks.innerHTML = arr.length;
 }
 
+// update amount of tasks completed
+checkboxArray.forEach((checkbox) => {
+  checkbox.addEventListener("click", () => {
+    if (checkbox.checked) {
+      addTasksCompleted++;
+      totalTasksCompleted.innerText = addTasksCompleted;
+    } else {
+      addTasksCompleted--;
+      totalTasksCompleted.innerText = addTasksCompleted;
+    }
+  });
+});
+
 // update progress status %
+
 // update progress bar
 
 // change state of task when task is complete
