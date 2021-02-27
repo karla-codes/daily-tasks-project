@@ -2,25 +2,48 @@ const meter = document.querySelector(".meter");
 const meterLength = meter.getTotalLength();
 const taskInput = document.querySelector(".task-input input");
 const addTaskBtn = document.querySelector(".task-input button");
-const taskItem = document.querySelectorAll(".task-item");
+
 const taskName = document.querySelector(".task-name");
 const tasksContainer = document.querySelector(".task-list");
-const deleteTaskBtn = document.querySelector(".delete-task");
 const clearAllTasks = document.querySelector(".clear-button");
 const percentage = document.querySelector(".percentage");
 const totalTasksCompleted = document.querySelector(".tasks-complete");
 const totalTasks = document.querySelector(".tasks-total");
 const tasksArray = [];
-const tasksCompletedArray = [];
-let addTasksCompleted = 0;
 
 // set meter dash array/offset
 meter.style.strokeDasharray = meterLength;
 meter.style.strokeDashoffset = meterLength;
 
-// create a new task
 addTaskBtn.addEventListener("click", function (e) {
   e.preventDefault();
+  createNewTask();
+  updateNumberOfTasks();
+  deleteTask();
+});
+
+// delete single task
+function deleteTask() {
+  const deleteTaskCheckbox = Array.prototype.slice.call(
+    document.querySelectorAll(".delete-task")
+  );
+  if (deleteTaskCheckbox.checked) {
+    console.log("checked");
+  }
+  deleteTaskCheckbox.forEach((checkbox) => {
+    checkbox.addEventListener("click", (e) => {
+      if (e.currentTarget.checked) {
+        console.log(e);
+        e.target.parentElement.remove();
+        updateNumberOfTasks();
+        checkCompletedTaskDeleted();
+      }
+    });
+  });
+}
+
+// create a new task WORKS
+function createNewTask() {
   const newTask = taskInput.value;
   tasksArray.push(newTask);
 
@@ -57,8 +80,8 @@ addTaskBtn.addEventListener("click", function (e) {
       />
     </svg>
     <label class="task-name" for="task">${newTask}</label>
-    <button class="delete-task">
-      <svg
+    <input class="delete-task" type="checkbox" />
+    <svg
         class="delete"
         width="18"
         height="17"
@@ -73,7 +96,6 @@ addTaskBtn.addEventListener("click", function (e) {
           stroke-width="2"
         />
       </svg>
-    </button>
   </div>
     `;
   const taskHTMLFragment = document
@@ -82,22 +104,25 @@ addTaskBtn.addEventListener("click", function (e) {
   tasksContainer.appendChild(taskHTMLFragment);
   taskInput.value = "";
 
-  const checkbox = document.querySelectorAll(".task-status");
-  const checkboxArray = [...checkbox];
-
-  updateNumberOfTasks(tasksArray);
-  updateTasksCompleted(checkboxArray);
-});
-
-// update number of tasks
-function updateNumberOfTasks(arr) {
-  totalTasks.innerHTML = arr.length;
+  updateTasksCompleted();
 }
 
-// update amount of tasks completed
-function updateTasksCompleted(arr) {
+// update number of tasks WORKS
+function updateNumberOfTasks() {
+  const taskItem = Array.prototype.slice.call(
+    document.querySelectorAll(".task-item")
+  );
+  totalTasks.innerHTML = taskItem.length;
+}
+
+// update amount of tasks completed WORKS
+function updateTasksCompleted() {
+  const completeTaskCheckbox = Array.prototype.slice.call(
+    document.querySelectorAll(".task-status")
+  );
   const checkboxCompleted = [];
-  arr.forEach((checkbox) => {
+
+  completeTaskCheckbox.forEach((checkbox) => {
     checkbox.addEventListener("click", () => {
       if (checkbox.checked) {
         checkboxCompleted.push(checkbox);
@@ -112,17 +137,24 @@ function updateTasksCompleted(arr) {
   });
 }
 
+// update amount of task marked completed that get deleted
+function checkCompletedTaskDeleted() {
+  const currentCompletedTasks = document.querySelectorAll(
+    ".task-status:checked"
+  );
+  const currentTotalTasks = document.querySelectorAll(".task-item");
+  totalTasksCompleted.textContent = currentCompletedTasks.length;
+  updateProgressBar(currentCompletedTasks, currentTotalTasks);
+}
+
 // update progress status % and progress bar
 function updateProgressBar(completedTasks, totalTasks) {
   const inverseMovement =
     (meterLength * completedTasks.length) / totalTasks.length;
   const meterMovement = meterLength - inverseMovement;
-  console.log(meterMovement);
   const percentCompleted = (completedTasks.length / totalTasks.length) * 100;
-  console.log(percentCompleted);
   percentage.textContent = `${Math.floor(percentCompleted)}%`;
   meter.style.strokeDashoffset = meterMovement;
 }
 
-// delete task
 // clear all tasks
