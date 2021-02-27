@@ -180,9 +180,18 @@ form.task-form {
 }
 
 .delete-task {
-  background: none;
-  border-style: none;
+  position: absolute;
   padding: 0;
+  left: 85%;
+  width: 2rem;
+  height: 2rem;
+  opacity: 0;
+  z-index: 1;
+}
+
+.delete {
+  width: 1rem;
+  height: auto;
 }
 
 .circle-checkbox {
@@ -200,13 +209,15 @@ form.task-form {
 }
 
 /* visually show focus outline when the SVG receives focus */
-.task-status:focus + svg {
+.task-status:focus + svg,
+.delete-task:focus + svg {
   outline: 3px solid #ffc4d3;
   outline-offset: 2px;
 }
 
 /* hide the focus styles for mouse users */
-.task-status:focus:not(:focus-visible) + svg {
+.task-status:focus:not(:focus-visible) + svg,
+.delete-task:focus:not(:focus-visible) + svg {
   outline: none;
 }
 
