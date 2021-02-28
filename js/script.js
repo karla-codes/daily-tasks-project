@@ -24,9 +24,14 @@ addTaskBtn.addEventListener("click", function (e) {
 // create a new task WORKS
 function createNewTask() {
   const newTask = taskInput.value;
-  tasksArray.push(newTask);
 
-  const taskHTML = `
+  if (newTask == "") {
+    alert("Woops! You forgot to enter a task.");
+    return false;
+  } else {
+    tasksArray.push(newTask);
+
+    const taskHTML = `
     <div class="task-item">
     <input class="task-status" type="checkbox" />
     <svg
@@ -77,13 +82,14 @@ function createNewTask() {
       </svg>
   </div>
     `;
-  const taskHTMLFragment = document
-    .createRange()
-    .createContextualFragment(taskHTML);
-  tasksContainer.appendChild(taskHTMLFragment);
-  taskInput.value = "";
+    const taskHTMLFragment = document
+      .createRange()
+      .createContextualFragment(taskHTML);
+    tasksContainer.appendChild(taskHTMLFragment);
+    taskInput.value = "";
 
-  updateTasksCompleted();
+    updateTasksCompleted();
+  }
 }
 
 // update number of tasks WORKS
@@ -168,7 +174,6 @@ clearAllTasks.addEventListener("click", () => {
     item.remove();
     tasksArray = [];
   });
-
   updateNumberOfTasks();
   checkCompletedTaskDeleted();
   meter.style.strokeDashoffset = meterLength;
