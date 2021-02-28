@@ -9,16 +9,7 @@ html {
   box-sizing: inherit;
 }
 
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ol,
-ul {
+body {
   margin: 0;
   padding: 0;
   font-weight: normal;
@@ -122,12 +113,16 @@ form.task-form {
 }
 
 .task-input button {
-  background-color: #ffc4d3;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  background-color: #ff4d79;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 5ch;
+  height: 5ch;
   border-radius: 50%;
   border-style: none;
+  cursor: pointer;
 }
 
 .plus-icon {
@@ -150,7 +145,7 @@ form.task-form {
   background-color: #ffffff;
   width: 100%;
   padding: 1rem 1.5rem;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .task-item:hover {
@@ -173,20 +168,19 @@ form.task-form {
   line-height: 127%;
   width: 13.75rem;
   min-height: 1.5rem;
-}
-
-.completed-task {
-  text-decoration: line-through;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .delete-task {
   position: absolute;
   padding: 0;
-  left: 85%;
+  left: 84%;
   width: 2rem;
   height: 2rem;
   opacity: 0;
   z-index: 1;
+  cursor: pointer;
 }
 
 .delete {
@@ -210,7 +204,8 @@ form.task-form {
 
 /* visually show focus outline when the SVG receives focus */
 .task-status:focus + svg,
-.delete-task:focus + svg {
+.delete-task:focus + svg,
+button:focus {
   outline: 3px solid #ffc4d3;
   outline-offset: 2px;
 }
@@ -227,6 +222,7 @@ form.task-form {
 }
 
 .task-status:checked ~ .task-name {
+  color: rgba(0, 0, 0, 0.351);
   text-decoration: line-through;
 }
 
@@ -236,14 +232,24 @@ form.task-form {
 }
 
 .clear-tasks {
-  font-family: "Poppins", sans-serif;
+  font-family: inherit;
   font-size: 1.125rem;
-  background-color: #717da8;
-  border-style: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  min-width: 14ch;
+  min-height: 2.75rem;
   border-radius: 6px;
-  width: 9.6875rem;
-  height: 3.125rem;
+  background-color: #717da8;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  padding: 0.25em 0.75em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.clear-tasks:hover {
+  background-color: #8892b6;
 }
 
 /*******
@@ -251,12 +257,18 @@ form.task-form {
 Media Queries
 ******/
 
+@media screen and (-ms-high-contrast: active) {
+  button {
+    border: 2px solid currentcolor;
+  }
+}
+
 @media screen and (max-width: 500px) {
   main.container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 4.875rem;
+    margin-top: 3rem;
   }
 
   .progress-container,
@@ -267,12 +279,16 @@ Media Queries
   }
 
   .progress-container h1 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .progress-bar {
-    width: 80%;
-    margin: 5.625rem auto;
+    width: 65%;
+    margin: 2.5rem auto 1.5rem;
+  }
+
+  .progress-bar p {
+    font-size: 1.125rem;
   }
 
   .progress-bar svg {
@@ -280,7 +296,7 @@ Media Queries
   }
 
   .tasks-container {
-    margin-top: 4.375rem;
+    margin-top: 4.125rem;
   }
 
   .form-container {
@@ -292,21 +308,44 @@ Media Queries
     width: 100%;
   }
 
+  .task-form label {
+    font-size: 14px;
+  }
+
   .task-input {
     width: 100%;
+    margin: 0 auto;
   }
 
   .task-input input {
     width: 80%;
+    height: 2rem;
+  }
+
+  .task-input button {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .plus-icon {
+    font-size: 1.5rem;
+    line-height: 110%;
+    text-align: center;
   }
 
   .task-list {
-    margin-top: 2.5rem;
-    height: 15rem;
+    margin-top: 1.875rem;
+    height: 13.125rem;
   }
 
   .task-item {
-    width: 100%;
+    max-width: 18.125rem;
+    min-height: 2.625rem;
+  }
+
+  .circle-checkbox {
+    width: 1.375rem;
+    height: 1.375rem;
   }
 
   .task-name {
@@ -317,5 +356,26 @@ Media Queries
   .clear-button {
     margin: 2.5rem auto;
     width: 90%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  main.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4.5rem;
+  }
+
+  .progress-bar {
+    width: 46%;
+  }
+
+  .tasks-container {
+    margin-top: 4rem;
+  }
+
+  .task-list {
+    margin-top: 1.875rem;
+    height: 18rem;
   }
 }
