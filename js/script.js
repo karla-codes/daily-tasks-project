@@ -127,17 +127,17 @@ function deleteTask() {
   const deleteTaskCheckbox = Array.prototype.slice.call(
     document.querySelectorAll(".delete-task")
   );
-  if (deleteTaskCheckbox.checked) {
-    console.log("checked");
-  }
   deleteTaskCheckbox.forEach((checkbox) => {
     checkbox.addEventListener("click", (e) => {
       if (e.currentTarget.checked) {
         console.log(e);
         e.target.parentElement.remove();
-
         updateNumberOfTasks();
         checkCompletedTaskDeleted();
+        // if there are no tasks left, reset progress bar
+      }
+      if (document.querySelectorAll(".task-status:checked").length == 0) {
+        meter.style.strokeDashoffset = meterLength;
       }
     });
   });
