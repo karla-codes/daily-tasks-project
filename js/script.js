@@ -8,7 +8,7 @@ const clearAllTasks = document.querySelector(".clear-button");
 const percentage = document.querySelector(".percentage");
 const totalTasksCompleted = document.querySelector(".tasks-complete");
 const totalTasks = document.querySelector(".tasks-total");
-const tasksArray = [];
+let tasksArray = [];
 
 // set meter dash array/offset
 meter.style.strokeDasharray = meterLength;
@@ -164,12 +164,13 @@ function updateProgressBar(completedTasks, totalTasks) {
 // clear all tasks
 clearAllTasks.addEventListener("click", () => {
   const taskItems = document.querySelectorAll(".task-item");
-
   taskItems.forEach((item) => {
     item.remove();
-    updateNumberOfTasks();
-    checkCompletedTaskDeleted();
-    meter.style.strokeDashoffset = meterLength;
-    percentage.textContent = `Let's do this!`;
+    tasksArray = [];
   });
+
+  updateNumberOfTasks();
+  checkCompletedTaskDeleted();
+  meter.style.strokeDashoffset = meterLength;
+  percentage.textContent = `Let's do this!`;
 });
