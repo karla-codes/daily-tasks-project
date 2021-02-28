@@ -251,10 +251,71 @@ form.task-form {
 Media Queries
 ******/
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 500px) {
   main.container {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 4.875rem;
+  }
+
+  .progress-container,
+  .tasks-container,
+  .task-list {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .progress-container h1 {
+    font-size: 1.75rem;
+  }
+
+  .progress-bar {
+    width: 80%;
+    margin: 5.625rem auto;
+  }
+
+  .progress-bar svg {
+    width: 100%;
+  }
+
+  .tasks-container {
+    margin-top: 4.375rem;
+  }
+
+  .form-container {
+    width: 92%;
+    margin: 0 auto;
+  }
+
+  form.task-form {
+    width: 100%;
+  }
+
+  .task-input {
+    width: 100%;
+  }
+
+  .task-input input {
+    width: 80%;
+  }
+
+  .task-list {
+    margin-top: 2.5rem;
+    height: 15rem;
+  }
+
+  .task-item {
+    width: 100%;
+  }
+
+  .task-name {
+    width: 70%;
+    margin-left: 1rem;
+  }
+
+  .clear-button {
+    margin: 2.5rem auto;
+    width: 90%;
   }
 }
