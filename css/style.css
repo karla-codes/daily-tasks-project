@@ -21,6 +21,10 @@ body {
   background-color: #f7f9ff;
 }
 
+input {
+  font-size: 1rem;
+}
+
 main.container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -319,12 +323,12 @@ Media Queries
 
   .task-input input {
     width: 80%;
-    height: 2rem;
+    height: 2.4rem;
   }
 
   .task-input button {
-    width: 2rem;
-    height: 2rem;
+    width: 5ch;
+    height: 5ch;
   }
 
   .plus-icon {
@@ -335,17 +339,18 @@ Media Queries
 
   .task-list {
     margin-top: 1.875rem;
-    height: 13.125rem;
+    min-height: 5rem;
   }
 
   .task-item {
-    max-width: 18.125rem;
+    max-width: 100%;
     min-height: 2.625rem;
+    padding: 10px 14px;
   }
 
   .circle-checkbox {
-    width: 1.375rem;
-    height: 1.375rem;
+    width: 1.6rem;
+    height: 1.6rem;
   }
 
   .task-name {
