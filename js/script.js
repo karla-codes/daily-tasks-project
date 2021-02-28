@@ -2,7 +2,6 @@ const meter = document.querySelector(".meter");
 const meterLength = meter.getTotalLength();
 const taskInput = document.querySelector(".task-input input");
 const addTaskBtn = document.querySelector(".task-input button");
-
 const taskName = document.querySelector(".task-name");
 const tasksContainer = document.querySelector(".task-list");
 const clearAllTasks = document.querySelector(".clear-button");
@@ -21,26 +20,6 @@ addTaskBtn.addEventListener("click", function (e) {
   updateNumberOfTasks();
   deleteTask();
 });
-
-// delete single task
-function deleteTask() {
-  const deleteTaskCheckbox = Array.prototype.slice.call(
-    document.querySelectorAll(".delete-task")
-  );
-  if (deleteTaskCheckbox.checked) {
-    console.log("checked");
-  }
-  deleteTaskCheckbox.forEach((checkbox) => {
-    checkbox.addEventListener("click", (e) => {
-      if (e.currentTarget.checked) {
-        console.log(e);
-        e.target.parentElement.remove();
-        updateNumberOfTasks();
-        checkCompletedTaskDeleted();
-      }
-    });
-  });
-}
 
 // create a new task WORKS
 function createNewTask() {
@@ -137,6 +116,27 @@ function updateTasksCompleted() {
   });
 }
 
+// delete single task
+function deleteTask() {
+  const deleteTaskCheckbox = Array.prototype.slice.call(
+    document.querySelectorAll(".delete-task")
+  );
+  if (deleteTaskCheckbox.checked) {
+    console.log("checked");
+  }
+  deleteTaskCheckbox.forEach((checkbox) => {
+    checkbox.addEventListener("click", (e) => {
+      if (e.currentTarget.checked) {
+        console.log(e);
+        e.target.parentElement.remove();
+
+        updateNumberOfTasks();
+        checkCompletedTaskDeleted();
+      }
+    });
+  });
+}
+
 // update amount of task marked completed that get deleted
 function checkCompletedTaskDeleted() {
   const currentCompletedTasks = document.querySelectorAll(
@@ -153,8 +153,23 @@ function updateProgressBar(completedTasks, totalTasks) {
     (meterLength * completedTasks.length) / totalTasks.length;
   const meterMovement = meterLength - inverseMovement;
   const percentCompleted = (completedTasks.length / totalTasks.length) * 100;
-  percentage.textContent = `${Math.floor(percentCompleted)}%`;
+  if (percentCompleted > 0) {
+    percentage.textContent = `You\'re ${Math.floor(percentCompleted)}% there!`;
+  } else {
+    percentage.textContent = `Let\'s do this!`;
+  }
   meter.style.strokeDashoffset = meterMovement;
 }
 
 // clear all tasks
+clearAllTasks.addEventListener("click", () => {
+  const taskItems = document.querySelectorAll(".task-item");
+
+  taskItems.forEach((item) => {
+    item.remove();
+    updateNumberOfTasks();
+    checkCompletedTaskDeleted();
+    meter.style.strokeDashoffset = meterLength;
+    percentage.textContent = `Let's do this!`;
+  });
+});
