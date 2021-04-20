@@ -26,9 +26,8 @@ input {
 }
 
 main.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 31.25rem;
+  display: flex;
+  flex-flow: column;
   margin: 8.125rem auto 0;
   width: 85%;
 }
@@ -39,11 +38,11 @@ Progress Bar and progress info
 
 .progress-container,
 .tasks-container {
-  grid-row: 1 / 2;
+  width: 50%;
 }
 
 .progress-container {
-  grid-column: 1 / 2;
+  margin: 0 auto;
 }
 
 .progress-container h1,
@@ -64,7 +63,7 @@ Progress Bar and progress info
 
 .progress-bar {
   width: 80%;
-  margin: 3.75rem auto;
+  margin: 1.25rem auto;
 }
 
 .progress-bar svg {
@@ -82,7 +81,8 @@ Progress Bar and progress info
 Tasks
 ************************************************/
 .tasks-container {
-  margin: 0 auto;
+  width: 20.9375rem;
+  margin: 2.625rem auto;
 }
 
 .form-container {
@@ -93,7 +93,7 @@ Tasks
 form.task-form {
   display: flex;
   flex-flow: column nowrap;
-  width: 21.875rem;
+  width: 100%;
 }
 
 .task-form label {
@@ -108,7 +108,7 @@ form.task-form {
 
 .task-input input {
   font-family: 'Poppins', sans-serif;
-  width: 18.4375rem;
+  width: 17.5rem;
   height: 2.5rem;
   border-radius: 9px;
   border: 1px solid #717da8;
@@ -134,22 +134,24 @@ form.task-form {
   line-height: 1;
 }
 
-.task-list {
-  width: 22.625rem;
-  height: 18.75rem;
-  padding-right: 12px;
+.tasks {
+  height: 16.5625rem;
   overflow-y: auto;
+}
+
+.task-list {
+  padding: 0;
+  margin-right: 10px;
 }
 
 .task-item {
   display: flex;
   position: relative;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   border: 1px solid #717da8;
   background-color: #ffffff;
-  width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1rem;
   margin-bottom: 8px;
 }
 
@@ -171,13 +173,14 @@ form.task-form {
 .task-name {
   font-size: 1rem;
   line-height: 127%;
-  width: 13.75rem;
+  width: 75%;
   min-height: 1.5rem;
+  padding-right: 2rem;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
 
-.delete-task {
+/* .delete-task {
   position: absolute;
   padding: 0;
   left: 84%;
@@ -191,21 +194,27 @@ form.task-form {
 .delete {
   width: 1rem;
   height: auto;
+} */
+
+.task-item input {
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-right: 1rem;
 }
 
-.circle-checkbox {
-  width: 1.625rem;
-  height: 1.625rem;
+.task-item button {
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
-.task-status {
+/* .task-status {
   position: absolute;
   width: 1.625rem;
   height: 1.625rem;
   left: 1.25rem;
   opacity: 0;
   z-index: 1;
-}
+} */
 
 /* visually show focus outline when the SVG receives focus */
 .task-status:focus + svg,
@@ -278,7 +287,7 @@ Media Queries
 
   .progress-container,
   .tasks-container,
-  .task-list {
+  .tasks {
     width: 90%;
     margin: 0 auto;
   }
@@ -338,7 +347,7 @@ Media Queries
     text-align: center;
   }
 
-  .task-list {
+  .tasks {
     margin-top: 1.875rem;
     min-height: 5rem;
   }
@@ -382,7 +391,7 @@ Media Queries
     margin-top: 4rem;
   }
 
-  .task-list {
+  .tasks {
     margin-top: 1.875rem;
     height: 18rem;
   }
