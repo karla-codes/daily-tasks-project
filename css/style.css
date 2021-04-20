@@ -16,7 +16,7 @@ body {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   background-color: #f7f9ff;
 }
@@ -107,7 +107,7 @@ form.task-form {
 }
 
 .task-input input {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   width: 18.4375rem;
   height: 2.5rem;
   border-radius: 9px;
@@ -365,15 +365,17 @@ Media Queries
   }
 }
 
+/* @media screen and (min-width: 625px a) {
+  .progress-bar {
+    width: 46%;
+  }
+} */
+
 @media screen and (max-width: 1024px) {
   main.container {
     display: flex;
     flex-direction: column;
     margin-top: 4.5rem;
-  }
-
-  .progress-bar {
-    width: 46%;
   }
 
   .tasks-container {
