@@ -5,7 +5,7 @@ const addTaskBtn = document.querySelector('#addTaskBtn');
 const taskList = document.querySelector('.task-list');
 
 function createNewTask() {
-  const taskText = taskInput.value;
+  let taskText = taskInput.value;
   const taskItem = document.createElement('li');
   taskItem.className = 'task-item';
   const checkbox = document.createElement('input');
@@ -19,6 +19,7 @@ function createNewTask() {
   appendChild(taskItem, span);
   appendChild(taskItem, button);
   appendChild(taskList, taskItem);
+  taskInput.value = '';
 }
 
 function appendChild(parent, element) {
