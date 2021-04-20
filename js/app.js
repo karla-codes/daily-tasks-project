@@ -3,25 +3,32 @@
 const taskInput = document.querySelector('.task');
 const addTaskBtn = document.querySelector('#addTaskBtn');
 const taskList = document.querySelector('.task-list');
+const clearAll = document.querySelector('.clear-tasks');
+const tasksComplete = document.querySelector('.tasks-complete');
+const totalTasks = document.querySelector('.tasks-total');
 let checked = 0;
 
 function createNewTask() {
   let taskText = taskInput.value;
-  const taskItem = document.createElement('li');
-  taskItem.className = 'task-item';
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  const span = document.createElement('span');
-  span.textContent = taskText;
-  span.className = 'task-name';
-  const button = document.createElement('button');
-  button.textContent = 'X';
-  appendChild(taskItem, checkbox);
-  appendChild(taskItem, span);
-  appendChild(taskItem, button);
-  appendChild(taskList, taskItem);
-  taskInput.value = '';
-  updateTasksTotal();
+  if (taskText === '') {
+    alert('Woops! Looks like you forgot to enter a task.');
+  } else {
+    const taskItem = document.createElement('li');
+    taskItem.className = 'task-item';
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    const span = document.createElement('span');
+    span.textContent = taskText;
+    span.className = 'task-name';
+    const button = document.createElement('button');
+    button.textContent = 'X';
+    appendChild(taskItem, checkbox);
+    appendChild(taskItem, span);
+    appendChild(taskItem, button);
+    appendChild(taskList, taskItem);
+    taskInput.value = '';
+    updateTasksTotal();
+  }
 }
 
 function appendChild(parent, element) {
@@ -29,15 +36,15 @@ function appendChild(parent, element) {
 }
 
 // when a new task is added, the task amount is updated
+
 function updateTasksTotal() {
   const tasks = document.querySelectorAll('.task-item');
-  const totalTasks = document.querySelector('.tasks-total');
   totalTasks.textContent = tasks.length;
 }
 
 // when a task is completed, the task completed amount is updated
+
 function updateTasksCompleted(target) {
-  const tasksComplete = document.querySelector('.tasks-complete');
   if (target.checked) {
     checked++;
     tasksComplete.textContent = checked;
@@ -45,6 +52,19 @@ function updateTasksCompleted(target) {
     checked--;
     tasksComplete.textContent = checked;
   }
+}
+
+// when clicked, all tasks are deleted and counters are reset
+function clearAllTasks() {
+  const taskItems = document.querySelectorAll('.task-item');
+  taskItems.forEach(item => {
+    item.remove();
+  });
+
+  // reset all counters
+  checked = 0;
+  tasksComplete.textContent = 0;
+  totalTasks.textContent = 0;
 }
 
 addTaskBtn.addEventListener('click', e => {
@@ -55,4 +75,8 @@ addTaskBtn.addEventListener('click', e => {
 taskList.addEventListener('change', e => {
   const currentTarget = e.target;
   updateTasksCompleted(currentTarget);
+});
+
+clearAll.addEventListener('click', () => {
+  clearAllTasks();
 });
