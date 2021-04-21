@@ -34,7 +34,15 @@ function createNewTask() {
     appendChild(taskList, taskItem);
     taskInput.value = '';
     updateTasksTotal();
+    addClickEvent(button);
   }
+}
+
+// add click event to buttons
+function addClickEvent(el) {
+  el.addEventListener('click', () => {
+    deleteTask(el);
+  });
 }
 
 function appendChild(parent, element) {
@@ -86,6 +94,19 @@ function clearAllTasks() {
   meter.style.strokeDashoffset = meterLength;
 }
 
+// delete individual tasks
+function deleteTask(el) {
+  const listItem = el.parentNode;
+  const tasks = document.querySelectorAll('.task-item');
+  listItem.remove();
+  updateTasksTotal();
+  if (listItem.firstChild.checked) {
+    checked--;
+    tasksComplete.textContent = checked;
+    updatePercentage();
+  }
+}
+
 addTaskBtn.addEventListener('click', e => {
   e.preventDefault();
   createNewTask();
@@ -100,5 +121,3 @@ taskList.addEventListener('change', e => {
 clearAll.addEventListener('click', () => {
   clearAllTasks();
 });
-
-console.log(meterLength);
