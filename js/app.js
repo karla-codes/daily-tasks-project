@@ -53,7 +53,9 @@ function appendChild(parent, element) {
 
 function updateTasksTotal() {
   const tasks = document.querySelectorAll('.task-item');
+  console.log(tasks.length);
   totalTasks.textContent = tasks.length;
+  console.log(totalTasks);
 }
 
 // when a task is completed, the task completed amount is updated
@@ -61,22 +63,39 @@ function updateTasksTotal() {
 function updateTasksCompleted(target) {
   if (target.checked) {
     checked++;
+    // updatePercentage();
     tasksComplete.textContent = checked;
   } else {
     checked--;
+    // updatePercentage();
     tasksComplete.textContent = checked;
   }
 }
 
 // updates percentage of progress
 function updatePercentage() {
-  const move =
-    (meterLength * tasksComplete.textContent) / totalTasks.textContent;
+  const numCompleted = tasksComplete.textContent;
+  const numTotal = totalTasks.textContent;
+  const move = (meterLength * numCompleted) / numTotal;
   const meterMovement = meterLength - move;
-  const percentValue =
-    (tasksComplete.textContent / totalTasks.textContent) * 100;
-  percentage.textContent = `${Math.floor(percentValue)}%`;
-  meter.style.strokeDashoffset = meterMovement;
+  const percentValue = (numCompleted / numTotal) * 100;
+
+  if (percentValue >= 0) {
+    percentage.textContent = `${Math.floor(percentValue)}%`;
+    meter.style.strokeDashoffset = meterMovement;
+  } else {
+    resetCounters();
+  }
+}
+
+// resets all counters
+function resetCounters() {
+  checked = 0;
+  tasksComplete.textContent = 0;
+  totalTasks.textContent = 0;
+  percentage.textContent = '0%';
+  meter.style.strokeDasharray = meterLength;
+  meter.style.strokeDashoffset = meterLength;
 }
 
 // when clicked, all tasks are deleted and counters are reset
@@ -87,24 +106,23 @@ function clearAllTasks() {
   });
 
   // reset all counters
-  checked = 0;
-  tasksComplete.textContent = 0;
-  totalTasks.textContent = 0;
-  percentage.textContent = '0%';
-  meter.style.strokeDashoffset = meterLength;
+  resetCounters();
 }
 
 // delete individual tasks
 function deleteTask(el) {
   const listItem = el.parentNode;
-  const tasks = document.querySelectorAll('.task-item');
+  // const tasks = document.querySelectorAll('.task-item');
   listItem.remove();
-  updateTasksTotal();
+  // updateTasksCompleted();
+  // updateTasksTotal();
+  // updatePercentage();
   if (listItem.firstChild.checked) {
     checked--;
     tasksComplete.textContent = checked;
-    updatePercentage();
   }
+  updateTasksTotal();
+  updatePercentage();
 }
 
 addTaskBtn.addEventListener('click', e => {
