@@ -6,7 +6,13 @@ const taskList = document.querySelector('.task-list');
 const clearAll = document.querySelector('.clear-tasks');
 const tasksComplete = document.querySelector('.tasks-complete');
 const totalTasks = document.querySelector('.tasks-total');
+const percentage = document.querySelector('.percentage');
+const meter = document.querySelector('.meter');
+const meterLength = meter.getTotalLength();
 let checked = 0;
+percentage.textContent = '0%';
+meter.style.strokeDasharray = meterLength;
+meter.style.strokeDashoffset = meterLength;
 
 function createNewTask() {
   let taskText = taskInput.value;
@@ -54,6 +60,17 @@ function updateTasksCompleted(target) {
   }
 }
 
+// updates percentage of progress
+function updatePercentage() {
+  const move =
+    (meterLength * tasksComplete.textContent) / totalTasks.textContent;
+  const meterMovement = meterLength - move;
+  const percentValue =
+    (tasksComplete.textContent / totalTasks.textContent) * 100;
+  percentage.textContent = `${Math.floor(percentValue)}%`;
+  meter.style.strokeDashoffset = meterMovement;
+}
+
 // when clicked, all tasks are deleted and counters are reset
 function clearAllTasks() {
   const taskItems = document.querySelectorAll('.task-item');
@@ -65,6 +82,8 @@ function clearAllTasks() {
   checked = 0;
   tasksComplete.textContent = 0;
   totalTasks.textContent = 0;
+  percentage.textContent = '0%';
+  meter.style.strokeDashoffset = meterLength;
 }
 
 addTaskBtn.addEventListener('click', e => {
@@ -75,8 +94,11 @@ addTaskBtn.addEventListener('click', e => {
 taskList.addEventListener('change', e => {
   const currentTarget = e.target;
   updateTasksCompleted(currentTarget);
+  updatePercentage();
 });
 
 clearAll.addEventListener('click', () => {
   clearAllTasks();
 });
+
+console.log(meterLength);
