@@ -138,7 +138,7 @@ function deleteTask() {
       }
       if (document.querySelectorAll(".task-status:checked").length == 0) {
         meter.style.strokeDashoffset = meterLength;
-      }
+      }                              
     });
   });
 }
@@ -156,7 +156,7 @@ function checkCompletedTaskDeleted() {
 // update progress status % and progress bar
 function updateProgressBar(completedTasks, totalTasks) {
   const inverseMovement =
-    (meterLength * completedTasks.length) / totalTasks.length;
+    (meterLength * completedTasks.length) / totalTasks.length;/
   const meterMovement = meterLength - inverseMovement;
   const percentCompleted = (completedTasks.length / totalTasks.length) * 100;
   if (percentCompleted > 0) {

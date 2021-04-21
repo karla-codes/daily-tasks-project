@@ -18,7 +18,7 @@ body {
 body {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  background-color: #f7f9ff;
+  background-color: #fcfdfe;
 }
 
 input {
@@ -28,8 +28,14 @@ input {
 main.container {
   display: flex;
   flex-flow: column;
-  margin: 8.125rem auto 0;
+  margin: 4rem auto 0;
   width: 85%;
+}
+
+hr {
+  border: 1px rgba(0, 0, 0, 0.144) solid;
+  width: 60%;
+  margin: 2rem auto;
 }
 
 /***********************************************
@@ -42,6 +48,10 @@ Progress Bar and progress info
 }
 
 .progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
 }
 
@@ -62,19 +72,20 @@ Progress Bar and progress info
 }
 
 .progress-bar {
-  width: 80%;
+  display: flex;
   margin: 1.25rem auto;
 }
 
 .progress-bar svg {
-  width: 100%;
   height: auto;
+  margin: 0 auto;
 }
 
 .meter {
   stroke-dasharray: 201px;
   stroke-dashoffset: 0;
   transition: stroke-dashoffset 850ms ease-in-out;
+  fill: none;
 }
 
 /************************************************
@@ -82,7 +93,7 @@ Tasks
 ************************************************/
 .tasks-container {
   width: 20.9375rem;
-  margin: 2.625rem auto;
+  margin: 1rem auto;
 }
 
 .form-container {
@@ -120,7 +131,7 @@ form.task-form {
   background-color: transparent;
   border: none;
   padding: 0;
-  background-color: #ff4d79;
+  background-color: #ff2b60;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   width: 5ch;
   height: 5ch;
@@ -135,7 +146,7 @@ form.task-form {
 }
 
 .tasks {
-  height: 16.5625rem;
+  max-height: 16.5625rem;
   overflow-y: auto;
 }
 
@@ -305,10 +316,6 @@ Media Queries
     font-size: 1.125rem;
   }
 
-  .progress-bar svg {
-    width: 100%;
-  }
-
   .tasks-container {
     margin-top: 4.125rem;
   }
@@ -349,7 +356,6 @@ Media Queries
 
   .tasks {
     margin-top: 1.875rem;
-    min-height: 5rem;
   }
 
   .task-item {
@@ -393,6 +399,5 @@ Media Queries
 
   .tasks {
     margin-top: 1.875rem;
-    height: 18rem;
   }
 }
