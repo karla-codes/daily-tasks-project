@@ -13,6 +13,7 @@ let checked = 0;
 percentage.textContent = '0%';
 meter.style.strokeDasharray = meterLength;
 meter.style.strokeDashoffset = meterLength;
+clearAll.style.display = 'none';
 
 function createNewTask() {
   let taskText = taskInput.value;
@@ -34,7 +35,18 @@ function createNewTask() {
     appendChild(taskItem, button);
     appendChild(taskList, taskItem);
     updateTasksTotal();
+    updateClearAllBtn();
     taskInput.value = '';
+  }
+}
+
+// show/hide clear all tasks button
+function updateClearAllBtn() {
+  const tasks = document.querySelectorAll('.task-item');
+  if (tasks.length > 0) {
+    clearAll.style.display = 'inline';
+  } else {
+    clearAll.style.display = 'none';
   }
 }
 
@@ -100,6 +112,7 @@ function clearAllTasks() {
   });
 
   resetCounters();
+  updateClearAllBtn();
 }
 
 // delete individual tasks
@@ -112,6 +125,7 @@ function deleteTask(el) {
   }
   updateTasksTotal();
   updatePercentage();
+  updateClearAllBtn();
 }
 
 addTaskBtn.addEventListener('click', e => {
