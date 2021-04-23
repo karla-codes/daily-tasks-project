@@ -16,7 +16,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Fira Mono', monospace;
   font-weight: 400;
   background-color: #fcfdfe;
 }
@@ -42,7 +42,6 @@ hr {
 Progress Bar and progress info
 ***********************************************/
 
-.progress-container,
 .tasks-container {
   width: 50%;
 }
@@ -57,14 +56,14 @@ Progress Bar and progress info
   width: 90%;
 }
 
-.progress-container h1,
+.percentage,
 .progress-container p {
   text-align: center;
   margin: 0 auto;
 }
 
-.progress-container h1 {
-  font-weight: 500;
+.percentage {
+  font-weight: 700;
   font-size: 2rem;
   width: 100%;
 }
@@ -115,29 +114,29 @@ form.task-form {
 
 .task-input {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .task-input input {
-  font-family: 'Poppins', sans-serif;
-  width: 75%;
+  font-family: 'Fira Mono', monospace;
+  width: 85%;
   height: 2.5rem;
   border-radius: 9px;
-  border: 1px solid #717da8;
+  border: 1px solid #898989;
   margin-right: 1rem;
   padding: 10px;
 }
 
 .task-input button {
   background-color: transparent;
-  border: none;
+  border: 1px #000000 solid;
   padding: 0;
-  background-color: #ff2b60;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  border: 1px #000000 solid;
+  box-shadow: 3px 3px 0 rgb(0, 0, 0);
   width: 5ch;
   height: 5ch;
-  border-radius: 50%;
-  border-style: none;
   cursor: pointer;
 }
 
@@ -158,19 +157,19 @@ form.task-form {
 
 .task-item {
   display: flex;
-  position: relative;
-  justify-content: flex-start;
+  /* position: relative; */
+  justify-content: space-between;
   align-items: center;
-  border: 1px solid #717da8;
+  border-bottom: 1px solid #595959;
   background-color: #ffffff;
   padding: 0.5rem 1rem;
-  margin-bottom: 8px;
+  margin-bottom: 1px;
 }
 
 .task-item:hover {
-  background-color: #dee5ff;
-  border-width: 2px;
-  margin-bottom: 4px;
+  background-color: #eaeaea;
+  /* border-color: #000000;
+  border-width: 2px; */
 }
 
 .task-item:hover .delete .cross {
@@ -178,24 +177,27 @@ form.task-form {
 }
 
 .delete {
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
 }
 
 .task-name {
   font-size: 1rem;
   line-height: 127%;
-  width: 75%;
+  width: 70%;
   min-height: 1.5rem;
-  padding-right: 2rem;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
 
-/* .delete-task {
-  position: absolute;
+.delete-task {
+  border: none;
+  background-color: unset;
+  background-image: url('../assets/delete.svg');
+  background-position: center;
+  background-size: cover;
   padding: 0;
-  left: 84%;
+  left: 75%;
   width: 2rem;
   height: 2rem;
   opacity: 0;
@@ -203,12 +205,10 @@ form.task-form {
   cursor: pointer;
 }
 
-.delete {
-  width: 1rem;
-  height: auto;
-} */
-
-.task-item input {
+.task-item:hover .delete-task {
+  opacity: 1;
+}
+*/ .task-item input {
   width: 1.3rem;
   height: 1.3rem;
   margin-right: 1rem;
@@ -260,14 +260,14 @@ button:focus {
 .clear-tasks {
   font-family: inherit;
   font-size: 1.125rem;
+  font-weight: 500;
   background-color: transparent;
-  border: none;
+  border: 1px #000 solid;
   padding: 0;
   min-width: 14ch;
   min-height: 2.75rem;
-  border-radius: 6px;
-  background-color: #717da8;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  background-color: #9093e4;
+  box-shadow: 3px 3px 0 rgb(0, 0, 0);
   padding: 0.25em 0.75em;
   cursor: pointer;
   text-align: center;
@@ -275,7 +275,7 @@ button:focus {
 }
 
 .clear-tasks:hover {
-  background-color: #8892b6;
+  background-color: #b5b7f0;
 }
 
 /*******
