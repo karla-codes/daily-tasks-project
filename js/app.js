@@ -28,7 +28,8 @@ function createNewTask() {
     span.textContent = taskText;
     span.className = 'task-name';
     const button = document.createElement('button');
-    button.textContent = 'Del';
+    button.className = 'delete-task';
+    // button.textContent = 'Del';
     addClickEvent(button);
     appendChild(taskItem, checkbox);
     appendChild(taskItem, span);
