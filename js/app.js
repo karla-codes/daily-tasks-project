@@ -24,6 +24,7 @@ function createNewTask() {
     taskItem.className = 'task-item';
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+    checkbox.className = 'task-status';
     const span = document.createElement('span');
     span.textContent = taskText;
     span.className = 'task-name';
