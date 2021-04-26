@@ -207,7 +207,7 @@ form.task-form {
   position: absolute;
   width: 1.625rem;
   height: 1.625rem;
-  left: 1.25rem;
+  left: 9%;
   opacity: 0;
   z-index: 1;
 }
@@ -230,16 +230,6 @@ input:focus {
 .task-status:focus:not(:focus-visible) + svg,
 .delete-task:focus:not(:focus-visible) + svg {
   outline: none;
-}
-
-/* adds stroke color when checkbox is checked */
-.task-status svg rect {
-  fill: #000239;
-}
-
-.task-status:checked ~ .task-name {
-  color: rgba(0, 0, 0, 0.351);
-  text-decoration: line-through;
 }
 
 .clear-button {
