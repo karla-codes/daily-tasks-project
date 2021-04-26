@@ -60,6 +60,7 @@ function createNewTask() {
     appendChild(taskList, taskItem);
     updateTasksTotal();
     updateClearAllBtn();
+    updatePercentage();
     taskInput.value = '';
   }
 }
@@ -174,8 +175,9 @@ function clearAllTasks() {
 // delete individual tasks
 const deleteTask = el => {
   const listItem = el.parentNode;
+  const checkbox = listItem.childNodes[0].firstChild;
   listItem.remove();
-  if (listItem.firstChild.checked) {
+  if (checkbox.checked) {
     checked--;
     tasksComplete.textContent = checked;
   }
