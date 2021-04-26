@@ -10,6 +10,19 @@ const percentage = document.querySelector('.percentage');
 const meter = document.querySelector('.meter');
 const meterLength = meter.getTotalLength();
 let checked = 0;
+let svgHTML = `
+  <svg width="18" 
+  height="18" 
+  viewBox="0 0 18 18" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  >
+    <rect x="0.5" y="0.5" width="17" height="17" rx="1.5" fill="#FBFBFB" stroke="black"/>
+  </svg>
+`;
+
 percentage.textContent = '0%';
 meter.style.strokeDasharray = meterLength;
 meter.style.strokeDashoffset = meterLength;
@@ -22,19 +35,28 @@ function createNewTask() {
   } else {
     const taskItem = document.createElement('li');
     taskItem.className = 'task-item';
+    const checkboxContainer = document.createElement('span');
+    checkboxContainer.className = 'checkbox-container';
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.className = 'task-status';
+    const svg = document.createElement('span');
+    svg.innerHTML = svgHTML;
     const span = document.createElement('span');
     span.textContent = taskText;
     span.className = 'task-name';
-    const button = document.createElement('button');
-    button.className = 'delete-task';
-    // button.textContent = 'Del';
-    addClickEvent(button);
-    appendChild(taskItem, checkbox);
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.className = 'edit-task';
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'delete-task';
+    addClickEvent(deleteButton, deleteTask);
+    appendChild(checkboxContainer, checkbox);
+    appendChild(checkboxContainer, svg);
+    appendChild(taskItem, checkboxContainer);
     appendChild(taskItem, span);
-    appendChild(taskItem, button);
+    appendChild(taskItem, editButton);
+    appendChild(taskItem, deleteButton);
     appendChild(taskList, taskItem);
     updateTasksTotal();
     updateClearAllBtn();
@@ -53,9 +75,9 @@ function updateClearAllBtn() {
 }
 
 // add click event to buttons
-function addClickEvent(el) {
+function addClickEvent(el, func) {
   el.addEventListener('click', () => {
-    deleteTask(el);
+    func(el);
   });
 }
 
@@ -118,7 +140,7 @@ function clearAllTasks() {
 }
 
 // delete individual tasks
-function deleteTask(el) {
+const deleteTask = el => {
   const listItem = el.parentNode;
   listItem.remove();
   if (listItem.firstChild.checked) {
@@ -128,7 +150,7 @@ function deleteTask(el) {
   updateTasksTotal();
   updatePercentage();
   updateClearAllBtn();
-}
+};
 
 addTaskBtn.addEventListener('click', e => {
   e.preventDefault();
@@ -137,6 +159,7 @@ addTaskBtn.addEventListener('click', e => {
 
 taskList.addEventListener('change', e => {
   const currentTarget = e.target;
+
   updateTasksCompleted(currentTarget);
   updatePercentage();
 });
