@@ -78,6 +78,8 @@ function updateClearAllBtn() {
 // update svg when check box is checked
 function updateSVG(target) {
   const svg = target.nextElementSibling;
+  const taskText = target.parentNode.nextElementSibling;
+
   if (target.checked) {
     svg.innerHTML = `
     <svg width="18"
@@ -91,6 +93,8 @@ function updateSVG(target) {
       <rect x="0.5" y="0.5" width="17" height="17" rx="1.5" fill="#000239" stroke="black"/>
     </svg>
     `;
+    taskText.style.textDecoration = 'line-through';
+    taskText.style.color = 'rgba(0, 0, 0, 0.351)';
   } else {
     svg.innerHTML = `
     <svg width="18"
@@ -104,6 +108,8 @@ function updateSVG(target) {
       <rect x="0.5" y="0.5" width="17" height="17" rx="1.5" fill="#FBFBFB" stroke="black"/>
     </svg>
     `;
+    taskText.style.textDecoration = 'none';
+    taskText.style.color = '';
   }
 }
 
@@ -193,7 +199,7 @@ addTaskBtn.addEventListener('click', e => {
 
 taskList.addEventListener('change', e => {
   const currentTarget = e.target;
-  console.log(e);
+
   updateTasksCompleted(currentTarget);
   updateSVG(currentTarget);
   updatePercentage();
