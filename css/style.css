@@ -157,17 +157,15 @@ form.task-form {
 
 .task-item {
   display: flex;
-  /* position: relative; */
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #595959;
-  /* background-color: #ffffff; */
   padding: 0.5rem 1rem;
   margin-bottom: 1px;
 }
 
-.task-item:hover .delete .cross {
-  stroke: #5c5c5c;
+.checkbox-container {
+  margin-right: 1rem;
 }
 
 .task-name {
@@ -177,6 +175,17 @@ form.task-form {
   min-height: 1.5rem;
   overflow-wrap: break-word;
   word-wrap: break-word;
+}
+
+.edit-task {
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-right: 1rem;
 }
 
 .delete-task {
@@ -194,44 +203,39 @@ form.task-form {
   cursor: pointer;
 }
 
-.task-item input {
-  width: 1.3rem;
-  height: 1.3rem;
-  margin-right: 1rem;
-}
-
-.task-item button {
-  width: 1rem;
-  height: 1rem;
-}
-
-/* .task-status {
+.task-status {
   position: absolute;
   width: 1.625rem;
   height: 1.625rem;
   left: 1.25rem;
   opacity: 0;
   z-index: 1;
-} */
+}
+
+.delete-task {
+  width: 1rem;
+  height: 1rem;
+}
 
 /* visually show focus outline when the SVG receives focus */
-/* .task-status:focus + svg,
+.task-status:focus + svg,
 .delete-task:focus + svg,
-button:focus {
-  outline: 3px solid #ffc4d3;
+button:focus,
+input:focus {
+  outline: 3px solid #ff7094;
   outline-offset: 2px;
-} */
+}
 
 /* hide the focus styles for mouse users */
-/* .task-status:focus:not(:focus-visible) + svg,
+.task-status:focus:not(:focus-visible) + svg,
 .delete-task:focus:not(:focus-visible) + svg {
   outline: none;
-} */
+}
 
 /* adds stroke color when checkbox is checked */
-/* .task-status:checked + svg .checkmark {
-  stroke: #717da8;
-} */
+.task-status svg rect {
+  fill: #000239;
+}
 
 .task-status:checked ~ .task-name {
   color: rgba(0, 0, 0, 0.351);
