@@ -74,6 +74,38 @@ function updateClearAllBtn() {
   }
 }
 
+// update svg when check box is checked
+function updateSVG(target) {
+  const svg = target.nextElementSibling;
+  if (target.checked) {
+    svg.innerHTML = `
+    <svg width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+    >
+      <rect x="0.5" y="0.5" width="17" height="17" rx="1.5" fill="#000239" stroke="black"/>
+    </svg>
+    `;
+  } else {
+    svg.innerHTML = `
+    <svg width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+    >
+      <rect x="0.5" y="0.5" width="17" height="17" rx="1.5" fill="#FBFBFB" stroke="black"/>
+    </svg>
+    `;
+  }
+}
+
 // add click event to buttons
 function addClickEvent(el, func) {
   el.addEventListener('click', () => {
@@ -159,8 +191,9 @@ addTaskBtn.addEventListener('click', e => {
 
 taskList.addEventListener('change', e => {
   const currentTarget = e.target;
-
+  console.log(e);
   updateTasksCompleted(currentTarget);
+  updateSVG(currentTarget);
   updatePercentage();
 });
 
