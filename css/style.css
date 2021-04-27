@@ -166,7 +166,7 @@ form.task-form {
 .task-name {
   font-size: 1rem;
   line-height: 127%;
-  width: 70%;
+  width: 55%;
   min-height: 1.5rem;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -208,7 +208,7 @@ form.task-form {
   position: absolute;
   width: 1.625rem;
   height: 1.625rem;
-  left: 9%;
+  left: auto;
   opacity: 0;
   z-index: 1;
 }
@@ -259,122 +259,43 @@ input:focus {
 Media Queries
 ******/
 
-/* @media screen and (-ms-high-contrast: active) {
+@media screen and (-ms-high-contrast: active) {
   button {
     border: 2px solid currentcolor;
   }
 }
 
-@media screen and (max-width: 500px) {
-  main.container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 3rem;
-  }
-
-  .progress-container,
-  .tasks-container,
-  .tasks {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .progress-container h1 {
-    font-size: 1.5rem;
-  }
-
-  .progress-bar {
-    width: 65%;
-    margin: 2.5rem auto 1.5rem;
-  }
-
-  .progress-bar p {
-    font-size: 1.125rem;
-  }
-
+@media screen and (min-width: 530px) {
+  hr,
   .tasks-container {
-    margin-top: 4.125rem;
-  }
-
-  .form-container {
-    width: 92%;
-    margin: 0 auto;
-  }
-
-  form.task-form {
-    width: 100%;
-  }
-
-  .task-form label {
-    font-size: 14px;
-  }
-
-  .task-input {
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .task-input input {
-    width: 80%;
-    height: 2.4rem;
-  }
-
-  .task-input button {
-    width: 5ch;
-    height: 5ch;
-  }
-
-  .plus-icon {
-    font-size: 1.5rem;
-    line-height: 110%;
-    text-align: center;
-  }
-
-  .tasks {
-    margin-top: 1.875rem;
-  }
-
-  .task-item {
-    max-width: 100%;
-    min-height: 2.625rem;
-    padding: 10px 14px;
-  }
-
-  .circle-checkbox {
-    width: 1.6rem;
-    height: 1.6rem;
-  }
-
-  .task-name {
-    width: 70%;
-    margin-left: 1rem;
-  }
-
-  .clear-button {
-    margin: 2.5rem auto;
-    width: 90%;
+    width: 28.125rem;
   }
 }
 
-/* @media screen and (min-width: 625px a) {
-  .progress-bar {
-    width: 46%;
-  }
-} */
-
-/* @media screen and (max-width: 1024px) {
+@media screen and (min-width: 1040px) {
   main.container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 4.5rem;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
   }
 
+  hr {
+    width: 1px;
+    height: 60%;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+  }
+
+  .progress-container,
   .tasks-container {
-    margin-top: 4rem;
+    width: 30%;
+    margin-top: 10rem;
   }
 
-  .tasks {
-    margin-top: 1.875rem;
+  .progress-container {
+    justify-content: unset;
   }
-} */
+}
