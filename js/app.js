@@ -28,6 +28,57 @@ meter.style.strokeDasharray = meterLength;
 meter.style.strokeDashoffset = meterLength;
 clearAll.style.display = 'none';
 
+// add click event to buttons
+function addClickEvent(el, func) {
+  el.addEventListener('click', e => {
+    func(el, e);
+  });
+}
+
+function appendChild(parent, element) {
+  parent.appendChild(element);
+}
+
+// show/hide clear all tasks button
+function updateClearAllBtn() {
+  const tasks = document.querySelectorAll('.task-item');
+  if (tasks.length > 0) {
+    clearAll.style.display = 'inline';
+  } else {
+    clearAll.style.display = 'none';
+  }
+}
+
+// when a new task is added, the task amount is updated
+function updateTasksTotal() {
+  const tasks = document.querySelectorAll('.task-item');
+  totalTasks.textContent = tasks.length;
+}
+
+// edit tasks
+function editTask(el, e) {
+  const editButton = el;
+  const listItem = el.parentNode;
+  const taskSpan = listItem.childNodes[1];
+  if (editButton.textContent === 'Edit') {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'edit-input';
+    input.value = taskSpan.textContent;
+    taskSpan.textContent = '';
+    taskSpan.appendChild(input);
+    editButton.textContent = 'Save';
+  } else {
+    const itemText = el.previousElementSibling;
+    const input = itemText.firstChild;
+    const inputText = input.value;
+    itemText.textContent = inputText;
+    input.remove();
+    console.log(itemText.textContent, input, inputText);
+    editButton.textContent = 'Edit';
+  }
+}
+
 function createNewTask() {
   let taskText = taskInput.value;
   if (taskText === '') {
@@ -50,6 +101,7 @@ function createNewTask() {
     editButton.className = 'edit-task';
     const deleteButton = document.createElement('button');
     deleteButton.className = 'delete-task';
+    addClickEvent(editButton, editTask);
     addClickEvent(deleteButton, deleteTask);
     appendChild(checkboxContainer, checkbox);
     appendChild(checkboxContainer, svg);
@@ -62,16 +114,6 @@ function createNewTask() {
     updateClearAllBtn();
     updatePercentage();
     taskInput.value = '';
-  }
-}
-
-// show/hide clear all tasks button
-function updateClearAllBtn() {
-  const tasks = document.querySelectorAll('.task-item');
-  if (tasks.length > 0) {
-    clearAll.style.display = 'inline';
-  } else {
-    clearAll.style.display = 'none';
   }
 }
 
@@ -111,23 +153,6 @@ function updateSVG(target) {
     taskText.style.textDecoration = 'none';
     taskText.style.color = '';
   }
-}
-
-// add click event to buttons
-function addClickEvent(el, func) {
-  el.addEventListener('click', () => {
-    func(el);
-  });
-}
-
-function appendChild(parent, element) {
-  parent.appendChild(element);
-}
-
-// when a new task is added, the task amount is updated
-function updateTasksTotal() {
-  const tasks = document.querySelectorAll('.task-item');
-  totalTasks.textContent = tasks.length;
 }
 
 // when a task is completed, the task completed amount is updated
@@ -200,9 +225,11 @@ addTaskBtn.addEventListener('click', e => {
 taskList.addEventListener('change', e => {
   const currentTarget = e.target;
 
-  updateTasksCompleted(currentTarget);
-  updateSVG(currentTarget);
-  updatePercentage();
+  if (currentTarget.type === 'checkbox') {
+    updateTasksCompleted(currentTarget);
+    updateSVG(currentTarget);
+    updatePercentage();
+  }
 });
 
 clearAll.addEventListener('click', () => {
