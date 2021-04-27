@@ -56,7 +56,7 @@ function updateTasksTotal() {
 }
 
 // edit tasks
-function editTask(el, e) {
+function editTask(el) {
   const editButton = el;
   const listItem = el.parentNode;
   const taskSpan = listItem.childNodes[1];
